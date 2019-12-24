@@ -10,13 +10,13 @@ Time Spent: 15 Hrs.
     - CVE-2015-3440
    
 - [ ] GIF Walkthrough:
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/xss1gif.gif)
+    ![](xss1gif.gif)
     
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/xss2.gif)
+    ![](xss2.gif)
     
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/xss3.gif)
+    ![](xss3.gif)
     
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/xss4.gif)
+    ![](xss4.gif)
 
 - [ ] Steps to recreate: 
 
@@ -24,15 +24,15 @@ Time Spent: 15 Hrs.
 
 2. Proceeded to open the webpage in an ingognito browser widow to mimic a user interacting with the page. I then proceeded to make a post on the page as 'Michael Scott' and waited for admin approval for the comment to be posted. (Shown Below)
 
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/step1xss.png)
+![](step1xss.png)
 
 3. After the admin approves the comment, 'Michael Scott' is now able to make any comments to the page without any sort of approval.  At the bottom of the page, we can also see that comment text can be crafted using HTML attributes.  As specified through the documentation in Exploit Database, we can use the provided template to create MySQL code that is large enough to cause truncation.
 
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/step2xss.png)
+![](step2xss.png)
 
 4. After the MySQL code is posted as a comment to the page, the "Hello World" payload appears at the top of the webpage.  Even after leaving the page and coming back to it, the code continues to execute automatically.
 
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/step3xss.png)
+![](step3xss.png)
 
 
 # User Enumeration (Two Methods)
@@ -41,34 +41,34 @@ Time Spent: 15 Hrs.
 
 - [ ] GIF Walkthrough:
 
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/ue1.gif)
+    ![](ue1.gif)
     
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/ue2.gif)
+    ![](ue2.gif)
     
-    ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/ue3.gif)
+    ![](ue3.gif)
 
 - [ ] Steps to recreate:
 
 1. On a permalink-enabled site, adding the '?author=n' (where n is an integer) to the end of the request redirects to a permalink version of the URL for that user, which by default returns the author's name.  To see this, I sent the following modified requests to the webpage and obtained the subsequent responses:
 
 http://<i></i>wpdistillery.vm/?author=1
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/enum1.png)
+![](enum1.png)
 
 http://<i></i>wpdistillery.vm/?author=2
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/enum2.png)
+![](enum2.png)
 
 http://<i></i>wpdistillery.vm/?author=3
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/enum3.png)
+![](enum3.png)
 
 
 2. For the second method, I used a wpscan in Kali to enumerate users using the following command:
     wpscan --url wpdistillery.vm -e u    
     Where:'--url' specifices the url of the target & '-e u' tells kali to enumerate usernames.
     
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/wpscan1.png)
+![](wpscan1.png)
 
 The Results of the scan:
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/wpscan2.png)
+![](wpscan2.png)
     
 
 # CSRF
@@ -81,18 +81,18 @@ The Results of the scan:
 
 - [ ] GIF Walkthrough:
   
-  ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf1.gif)
+  ![](csrf1.gif)
   Hide attacker page behind href anchor text
-  ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf2.gif)
+  ![](csrf2.gif)
   Link clicked while Admin is logged in and form is submitted
-  ![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf3.gif)
+  ![](csrf3.gif)
   
 
 - [ ] Steps to Recreate:
 
 1. Started by adding a comment to a page while being logged in as Admin
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf1.png)
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf2.png)
+![](csrf1.png)
+![](csrf2.png)
 
 2. I have hosted a webpage on Github that, when visited, executes the form.  
   * "comment" is the string we want to post in the comment (What we want it to say)
@@ -100,14 +100,14 @@ The Results of the scan:
   * "comment_parent = 0" tells the code to post as a new comment.
   * " wp_unfiltered_html_comment" - The value of this variable is just a random unique 'ID' number for the comment
   
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf3.png)
+![](csrf3.png)
 
 3. We can hide the url to the attacker site inside of an "href" and attempt to conceal the true url by hiding behind the anchor text that will appear in the comment.  In this case, "Redirect to CSRF" is the anchor text.  Clicking the link will redirect the logged-in user to the attackers webpage.
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf4.png)
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf5.png)
+![](csrf4.png)
+![](csrf5.png)
 
 4. Because 'Michael Scott' has already posted to the site before with admin approval, nothing else he posts will require the admin the review his post.
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf6.png)
+![](csrf6.png)
 
 5. The logged-in admin clicks on the redirect link, the csrfForm executes and submits, and the post 'You've beeen CSRFed' is posted to the webpage and appears as though the admin was the person who created the post.
-![](https://github.com/ErikMontenegro11/codepathWPD/blob/master/csrf7.png)
+![](csrf7.png)
