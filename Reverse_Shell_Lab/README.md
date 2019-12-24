@@ -49,8 +49,8 @@ The most critical and obvious vulnerability discovered was that “Anonymous” 
  # Vulnerability 2: “File Thingie” 2.5.7 Contains Known Vulnerability
  
  ### Summary:
-After doing a little research on this version of the “File Thingie” service being ran on the server, Exploit DB provides us with information regarding an arbitrary file upload vulnerability which allows an attacker to upload malicious .zip archives.  Documentation and proof of concept information were available in the Exploit Database website via the following link.
-https://<i><i/>www.exploit-db.com/exploits/47349
+After doing a little research on this version of the “File Thingie” service being ran on the server, Exploit DB provides us with information regarding an arbitrary file upload vulnerability which allows an attacker to upload malicious .zip archives.  Documentation and proof of concept information were available in the Exploit Database website via the following link.<br/>
+https://<i><i/>www.exploit-db.com/exploits/47349<br/>
 Php files are not an acceptable file type to be uploaded to the server when uploaded by themselves.  Concealing them in a zip file was an effective workaround.  I noticed that some other php files that were successfully uploaded and bypassed input validation by adding a second extension to the file name.  Even though the web app would “filter” out the php file I uploaded, I could see that the unzipped folder showed that it contained 4 files even though it only listed 3.  Thus, proving that the file was present even though it was hidden.
   
  ### Walkthrough:
