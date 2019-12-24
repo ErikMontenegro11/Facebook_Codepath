@@ -8,19 +8,19 @@ In this assignment, we used Google Cloud platform to setup 2 cloud based virtual
 ## Demonstration Documentation
 
  - Below you can see the VM I created in GCP
- ![](https://github.com/ErikMontenegro11/HoneyPotWeek11/blob/master/gcpVMs.png)
+ ![](gcpVMs.png)
  
  - I Nmapped the machine below and recieved the shown response from Kali Linux.  I noticed that the firewall rules didn't seeem to take inside of the honey net.  Only one port (22) was shown to be open.  You can see that the machine is a GCP machine running an Ubuntu OS.  
- ![](https://github.com/ErikMontenegro11/HoneyPotWeek11/blob/master/nmap.gif)
+ ![](nmap.gif)
  
  - Immediately after deployment, the attacks started coming in and the summary of the first couple of hours is depicted below.
- ![](https://github.com/ErikMontenegro11/HoneyPotWeek11/blob/master/summary.png)
+ ![](summary.png)
  
  - I set up the VMs in week 10 and let them sit and get attacked for roughtly 7 days and collected over 2.2 million attacks in that time frame.  Pretty jarring to see how quickly attacks came in after deployment.
- ![](https://github.com/ErikMontenegro11/HoneyPotWeek11/blob/master/attackreport.png)
+ ![](attackreport.png)
  
  -  I exported the JSON file to my machine after collecting honey and the session.json file ended up being enormous.  Below, I took a screenshot of the bottom of the file to show the 2.2 million attacks.
- ![](https://github.com/ErikMontenegro11/HoneyPotWeek11/blob/master/2million.png)
+ ![](2million.png)
 
 - Sample output of the JSON file:
 ```json
@@ -55,8 +55,3 @@ In this assignment, we used Google Cloud platform to setup 2 cloud based virtual
 {"_id":{"$oid":"5dc1e830616a1e656a884044"},"protocol":"mssqld","hpfeed_id":{"$oid":"5dc1e82e616a1e656a88403d"},"timestamp":{"$date":"2019-11-05T21:22:54.151Z"},"source_ip":"95.46.78.190","source_port":52569,"destination_port":1433,"identifier":"4e05d2b8-0012-11ea-bded-42010a800002","honeypot":"dionaea"}
 
 ```
-
-
-## Side Notes
-
- - I only deployed the Dionaea sensor in the honeynet.  I tried to go back and deploy a second sensor, but after collecting so much log data for 7 days, my machine ran out of disk space and I had trouble trying to deploy a second one.  I worked at it for a few hours but short of starting the project from scratch, I couldn't figure out a work around to free up more disk space.
